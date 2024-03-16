@@ -1,0 +1,58 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.boton{
+    @include m.boton( darken(v.$colorCabacera, 10%),  v.$blanco);
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+    color: v.$colorTexto;
+    @include m.tablet {
+        width: 80%;
+    }
+}
+
+/* con el ancho siempre en 100%, se usa en /paginas/comprar*/
+.boton2{
+    @include m.boton( darken(v.$colorCabacera, 10%),  v.$blanco);
+    margin-top: 0.5rem;
+    margin-bottom: 3rem;
+    color: v.$colorTexto;
+    border-radius: 1rem;
+}
+
+.boton-comun{
+    @include m.boton(v.$colorCabacera, v.$colorTexto);
+    max-width: 80%;
+    text-align: center;
+    margin: 0 auto 2rem auto;
+    border-radius: 1rem;
+    @include m.tablet {
+        max-width: 40%;
+    }
+}
+
+.boton-comun-enviar{
+    @include m.boton(v.$colorCabacera, v.$colorTexto);
+    text-align: center;
+    margin: 0 auto 2rem auto;
+    border-radius: 1rem;
+}
+
+.boton-eliminar{
+    @include m.boton(#FF0000, v.$blanco);
+    width: 60%;
+    margin: 0 auto;
+    @include m.tablet {
+        width: 60%;
+    }
+}
+
+.boton-actualizar{
+    @include m.boton(v.$colorCabacera, v.$blanco);
+    width: 60%;
+    margin: 0 auto;
+    @include m.tablet {
+        width: 60%;
+    }
+}

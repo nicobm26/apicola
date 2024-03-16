@@ -1,0 +1,15 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.imagen{
+    display: block;
+    margin: 0 auto;
+    width: 280px;    
+    max-width: 1300px;
+    height: auto; 
+    border-radius: 1rem;
+    margin-bottom: 3rem;
+    @include m.tablet {
+        width: 65rem;
+    }
+}

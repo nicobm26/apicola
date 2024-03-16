@@ -1,0 +1,70 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.card {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 20px;
+    @include m.tablet {
+        display: grid;
+        grid-template-columns: 1fr;
+        align-items: center;
+        justify-content: center;  
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    margin-top: 3rem;
+    padding: 0 2rem;
+}
+.left img{
+    height: 400PX;
+    width: 400PX;
+    border-radius: 20px;
+    filter: drop-shadow(0 0 5px v.$colorCabacera);
+}
+.right {
+    padding: 20px;
+    span{
+        font-weight: v.$bold;
+    }
+}
+
+.margin-2rem{
+    margin-top: 4rem;
+}
+
+/* medida*/
+.cardMedida{
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}
+.card__opcionesMedida{
+    form{
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        margin-bottom: 4rem;
+        @include m.tablet {
+            gap: 10rem;
+            flex-direction: row;
+        }
+        .boton-actualizar, 
+        .boton-eliminar{
+            width: 100%;
+        }
+    }
+}

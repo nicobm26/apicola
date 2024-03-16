@@ -1,0 +1,187 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+input,
+button{
+	border: none;
+	outline: none;
+}
+/*=============== LOGIN ===============*/
+.login{
+   position: relative;
+   // height: 100vh;
+   // height: calc(100vh - 200px);      
+   display: grid;
+   align-items: center;
+   margin-top: 3rem;
+   margin: 4rem auto 2rem auto; 
+   
+
+   &__img{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+   }
+   &__form{
+      position: relative;
+      // background-color: hsla(0, 0%, 10%, .1);
+      background-color: #2d3133;
+      // background-color: v.$colorCabacera;
+      // background-color: v.$colorFondoPagina;
+      border: 2px solid hsl(0, 0%, 100%) ;
+      margin-inline: 2.4rem;
+      padding: 4rem 2.4rem;
+      border-radius: 1.6rem;
+      backdrop-filter: blur(8px);
+      margin: 0 auto;
+   }
+   &__title{
+      text-align: center;
+      font-size: 2.8rem;
+      font-weight: 500;
+      margin-bottom: 3.2rem;
+      color: hsl(0, 0%, 100%) ;
+   }
+   &__content,
+   &__box{
+      display: grid;
+   }
+   &__content{
+      row-gap: 2.8rem;
+      margin-bottom: 2.4rem;
+   }
+   &__box{
+      grid-template-columns: max-content 1fr ;
+      align-items: center;
+      column-gap: 1.2rem;
+      border-bottom: 2px solid hsl(0, 0%, 100%) ;
+   }
+   &__icon,
+   &__eye{
+      font-size: 2rem;
+   }
+   &__input{
+      width: 100%;
+      padding-block: 1.28rem;
+      background: none;
+      color: hsl(0, 0%, 100%) ;
+      position: relative;
+      z-index: 1;
+   }
+   &__box-input{
+      position: relative;
+   }
+   &__label{
+      position: absolute;
+      left: 0;
+      top: 13px;
+      font-weight: 500;
+      transition: top .3s, font-size .3s;
+   }
+   &__eye{
+      position: absolute;
+      right: 0;
+      top: 18px;
+      z-index: 10;
+      cursor: pointer;
+   }
+   &__box:nth-child(2) input{
+      padding-right: 2.88rem;
+   }
+   &__check,
+   &__check-group{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+   }
+   &__check{
+      margin-bottom: 2.4rem;
+   }
+   &__check-label,
+   &__forgot,
+   &__register{
+      font-size: 1.3rem;
+   }
+   &__check-group{
+      column-gap: .8rem;
+   }
+   &__check-input{
+      width: 16px;
+      height: 16px;
+   }
+   &__forgot{
+      color: hsl(0, 0%, 100%) ;
+
+      &:hover{
+         text-decoration: underline;
+      }
+   }
+   &__button{
+      width: 100%;
+      padding: 1.6rem;
+      border-radius: .8rem;
+      background-color: hsl(0, 0%, 100%) ;
+      font-weight: 500;
+      cursor: pointer;
+      margin-bottom: 3.2rem;
+      color: black;
+   }
+   &__register{
+      text-align: center;
+      color: hsl(0, 0%, 100%) ;
+      & a{
+         color: v.$colorCabacera;
+         font-weight: 500;
+
+         &:hover{
+            text-decoration: underline;
+         }
+      }
+   }
+}
+
+/* Input focus move up label */
+.login__input:focus + .login__label{
+   top: -12px;
+   font-size: 1.3rem;
+}
+
+/* Input focus sticky top label */
+.login__input:not(:placeholder-shown).login__input:not(:focus) + .login__label{
+   top: -12px;
+   font-size: 1.3rem;
+}
+
+
+@media screen and (min-width: 576px) {
+   .login {
+     justify-content: center;
+   }
+   .login__form {
+     width: 432px;
+   //   padding: 6.4rem 4.8rem 5.6rem;
+     padding: 5rem 4.8rem 5rem;
+     border-radius: 2.4rem;
+   }
+   .login__title {
+     font-size: 3.2rem;
+   }
+}
+
+
+.forget{
+   position: relative;
+   display: grid;
+   align-items: center;
+   margin: 1rem 0;
+   // margin: 4rem auto 2rem;
+   .clave{
+      margin-bottom: 2rem;
+   }
+}
+.acciones{
+   display: flex;
+   flex-direction: column;
+}

@@ -1,0 +1,192 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.formulario{
+    width: 100%;
+    margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.campo{
+    display: flex;
+    margin-bottom: 2rem;
+    align-items: center;
+    justify-content: center;
+    width: 310px;
+    gap: 2rem;
+    label{
+        flex: 0 0 6rem;
+    }
+    input, textarea, select{
+        flex: 1 1 40rem;
+        border: none;
+        padding: calc(v.$separacion/4);
+        border-radius: 1rem;
+
+        &:disabled{
+            background:lighten(v.$negro, 30%);
+            color: v.$blanco;
+            cursor: not-allowed;
+        }
+    }
+    // input[type=file]::file-selector-button {
+    //     margin-right: 20px;
+    //     border: none;
+    //     background: #084cdf;
+    //     padding: 10px 20px;
+    //     border-radius: 10px;
+    //     color: #fff;
+    //     cursor: pointer;
+    //     transition: background .2s ease-in-out;
+    //   }
+      
+    //   input[type=file]::file-selector-button:hover {
+    //     background: #0d45a5;
+    // }
+}
+
+.formulario {
+   .campo__name{
+        color: v.$negro;
+   }
+}
+
+.card__opciones{
+    display: flex;
+    flex-direction: column; 
+    gap: 1rem;
+    margin-bottom: 3rem;
+    @include m.tablet{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column: 1 / 3;
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+    }
+}
+
+
+.cajaBoton{
+    .boton{
+        @include m.tablet {
+            width: 30rem;
+        }
+    }
+}
+
+/**********File Inputs**********/
+.container-input {
+    text-align: center;
+    /* background: #282828; */
+    /* border-top: 5px solid #c39f77; */
+    // padding: 50px 0;
+    border-radius: 6px;
+    // width: 50%;
+    margin: 0 auto;
+    .cajaInputFile{
+        display: flex;
+        align-items: center;
+        width: 310px;
+        gap: 2rem;
+        margin-bottom: 4rem;       
+    }
+    label{
+        color: v.$colorTexto;
+    }
+}
+.container-input-actualizar{
+    display: grid;
+    text-align: center;
+    border-radius: 6px;
+    margin: 0 auto;
+    margin-bottom: 3rem;
+    @include m.tablet {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto 1fr;       
+        align-items: center;
+        border: 2px solid black; 
+    }
+    
+    .cajaInputFile{
+        margin-top: 2rem;
+        width: 240px;
+        margin-bottom: 1rem;     
+    }
+    label{
+        grid-row: 1/3;
+        color: v.$colorTexto;
+    }
+}
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.inputfile + label {
+    max-width: 80%;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0.625rem 1.25rem;
+    border-radius: 1rem;
+    padding: 1.3rem;
+}
+
+.inputfile + label svg {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    fill: currentColor;
+    margin-top: -0.25em;
+    margin-right: 0.25em;
+}
+
+.iborrainputfile {
+	font-size:16px; 
+	font-weight:normal;
+	font-family: 'Lato';
+}
+
+/* style 1 */
+
+.inputfile-1 + label {
+    color: #fff;
+    background-color: #084cdf;
+}
+
+.inputfile-1:focus + label,
+.inputfile-1.has-focus + label,
+.inputfile-1 + label:hover {
+    background: #0d45a5;
+}
+
+
+.imagen-small{
+    width: 80px;
+    height: 80px;
+    border-radius: 1rem;
+}
+
+.infoImagenActual{
+    p{
+        margin: 0;
+        margin-bottom: 0.5rem;
+        font-size: 14px;
+    }
+    img{
+        margin-bottom: 1rem;
+    }
+}

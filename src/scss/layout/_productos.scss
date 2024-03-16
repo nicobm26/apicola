@@ -1,0 +1,187 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+
+.contenedor {
+  max-width: 120rem;
+  width: 90%;
+  margin: 0 auto;
+}
+
+@media (max-width: 320px) {
+  .productosDestacados {
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+}
+
+/* DESDE AGUI ABAJO INCIA EL CSS DE LOS PRODUCTOS BY DANIEL*/
+
+.titulo {
+  text-transform: capitalize;
+  margin-top: 3rem;
+  margin-bottom: 4rem;
+  color: v.$colorTexto;
+}
+
+.Cont-Productos {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);  
+  gap: 5rem;
+  background-color: #fcd24700;
+  justify-items: center;
+  @include m.tablet {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 7rem;
+    column-gap: 0;
+  }
+  @include m.desktop {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.imgProductos {
+  height: 400px;
+  width: 400px;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+.cont-miel {
+  display: block;
+  width: 300px;
+  height: auto;
+  margin: 20px;
+  margin: 0 auto;
+  text-align: center;
+  border: 2px solid rgb(246, 138, 15);
+  padding: 10px;
+  background-color: #faca39;
+  border-radius: 20px;
+  transition: transform 0.3s;
+}
+
+.cont-miel:hover {
+  transform: scale(1.03);
+}
+
+.combobox {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #0097a7;
+}
+.combobox option {
+  color: black;
+  background-color: #ffc1078d;
+}
+.combobox select {
+  background-color: #f3ff07;
+  padding: 7px;
+  border-radius: 7px;
+}
+@media (max-width: 900) {
+  .Cont-Productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    max-width: 100%;
+  }
+}
+
+.Click-Producto-Contenedor {
+  display: flex;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 50px;
+  background-color: #eeeba1c1;
+  text-align: center;
+  justify-content: center;
+}
+.Click-Imagen-Comprar {
+  width: 350px;
+  height: auto;
+  margin-right: 20px;
+  border-radius: 60px;
+}
+.Click-Producto-SubContenedor {
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.boton-Comprar {
+  background-color: #f3ff07;
+  border-radius: 9px;
+  margin: 3px;
+}
+.boton-Comprar:hover {
+  background-color: #faca39;
+}
+
+@media (max-width: 900) {
+  .Click-Producto-Contenedor {
+    height: 390px;
+    display: flex;
+    max-width: 100%;
+  }
+}
+.CLick-segundo-article {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 50px;
+  margin-left: 12px;
+  padding-bottom: 200px;
+  padding: 50px;
+  font-size: 20px;
+}
+
+.contenedor-producto{
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 2rem;
+  @include m.tablet {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8rem;
+
+    > .productoSeleccionado:nth-child(1) {
+      justify-self: end;
+      // margin-right: 4rem;
+    }
+    > .productoSeleccionado:nth-child(2) {
+      justify-self: start;
+  
+    }
+
+  }
+}
+.productoSeleccionado{
+  border: 2.5px solid v.$colorCabacera;
+  background-color: v.$colorCabacera;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  transition: transform 0.3s;
+  // margin: 2rem;
+  
+  width: 300px;
+  justify-self: center;
+  @include m.desktop {
+    width: 400px;
+  }
+}
+
+.productoSeleccionado__diferente{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.imgProducto{
+  width: 300px;
+  height: 300px;
+  object-fit: fill;
+  border-radius: 4rem;
+  padding: 0 2rem;
+  @include m.tablet {
+    // width: ;
+  }
+}

@@ -1,0 +1,73 @@
+@use 'base/variables' as v;
+@use 'base/mixins' as m;
+
+.contenedor-carrito{
+    margin-top: 5rem;    
+    @include m.tablet{
+        display: grid;
+    }
+}
+.carrito__producto{
+    // box-shadow: 6px 20px 10px black;
+}
+
+.cajaCarrito{
+    width: 300px;
+    margin: 0 auto;
+    margin-bottom: 4rem;
+    padding: 2rem 0;
+    display: grid;
+    justify-items: center;
+    border: 1px solid;
+    background-color: v.$colorCabacera;
+    border-radius: 1rem;
+    // box-shadow: 6px 20px 10px black;
+    @include m.tablet {
+        width: 90%;
+        grid-template-columns: repeat(4, 1fr);    
+        align-items: center;            
+        margin-bottom: 3rem;        
+    }
+}
+
+.carrito__item{
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-direction: column;
+
+    @include m.tablet {
+        flex-direction: row;
+    }
+
+}
+
+.carrito__item__img{
+    @include m.tablet {
+        margin-left: 2rem;
+    }
+    
+    img{
+        width: 100px;
+        height: 100px;
+        border-radius: 1rem;
+    }
+}
+.carrito__item__info{
+    width: auto;
+    @include m.tablet {
+        width: 140px;
+    }
+    p{
+        display: inline-block;
+        @include m.tablet {
+            display: block;
+        }
+    }  
+}
+
+.formEliminarCarrito{
+    .boton2{
+        margin: 0;
+    }
+}
