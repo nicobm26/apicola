@@ -6,6 +6,8 @@ use Model\Producto;
 use MVC\Router;
 
 use Intervention\Image\ImageManagerStatic as Image;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 use Model\UnidadesMedida;
 
@@ -50,13 +52,9 @@ class AdminController{
             
             //$imagen = $_FILES['producto'];
             
-            $nombreImagen = $_POST['producto']['codigo']  . ".jpg";
-            // debuguear($nombreImagen);
-            // debuguear( $nombreImagen);
-            if($_FILES['file-1']['tmp_name']){
-                // create new image instance (800 x 600)
-                // $image = Image::make($_FILES['file-1']['tmp_name'])->fit(800,600);           
-                $image = Image::make($_FILES['file-1']['tmp_name']); 
+            $nombreImagen = $_POST['producto']['codigo']  . ".webp";
+            // debuguear($nombreImagen);     
+            if($_FILES['file-1']['tmp_name']){        
                 $producto->setImagen($nombreImagen);
             }
             
@@ -68,8 +66,11 @@ class AdminController{
                 if(!is_dir(CARPETA_IMAGENES)){
                     mkdir(CARPETA_IMAGENES);
                 }    
-                //Guarda la imagen en el servidor
-                $image->save(CARPETA_IMAGENES . $nombreImagen);
+
+                //Guarda la imagen en el servidor                          
+                $manager = new ImageManager(new Driver());
+                $image = $manager->read($_FILES['file-1']['tmp_name']);
+                $image->toWebp(70)->save(CARPETA_IMAGENES .  $nombreImagen);
                 
                 // Guarda en la base de datos
                 $resultado = $producto->guardarLLaveDefinida('codigo');
@@ -100,10 +101,8 @@ class AdminController{
 
             // debuguear($_FILES["file-1"]["tmp_name"]);
 
-            $nombreImagen = $producto->codigo . ".jpg";
-            if($_FILES['file-1']['tmp_name']){            
-                // $image = Image::make($_FILES['producto']['tmp_name']['imagen'])->resize(600, 400);
-                $image = Image::make($_FILES['file-1']['tmp_name']);
+            $nombreImagen = $producto->codigo . ".webp";
+            if($_FILES['file-1']['tmp_name']){                        
                 $producto->setImagen($nombreImagen);
             }
            
@@ -114,7 +113,11 @@ class AdminController{
             if(empty($alertas)){
                 // Realiza el resize con intervention  Y Setear la imagen
                 if($_FILES['file-1']['tmp_name']){
-                    $image->save(CARPETA_IMAGENES . $nombreImagen);
+                                    
+                    //Guarda la imagen en el servidor                          
+                    $manager = new ImageManager(new Driver());
+                    $image = $manager->read($_FILES['file-1']['tmp_name']);
+                    $image->toWebp(70)->save(CARPETA_IMAGENES .  $nombreImagen);
                 }                
                 $resultado = $producto->actualizarLlave('codigo', $producto->codigo);
 
@@ -134,7 +137,6 @@ class AdminController{
     
     public static function eliminarProducto(){
         isAdmin();
-        // $rutaImagen =  __DIR__ .'/../public/imagenes/';
 
         if($_SERVER['REQUEST_METHOD']=== "POST"){
             // debuguear($_POST);
@@ -146,7 +148,8 @@ class AdminController{
                 $producto = Producto::where('codigo',$codigo);               
                 $rutaImagen = CARPETA_IMAGENES . $producto->imagen;
                 // debuguear($rutaImagen);
-                //eliminar imagen
+                
+                //Eliminar imagen
                 if(file_exists($rutaImagen)){                   
                     unlink($rutaImagen);
                 }
