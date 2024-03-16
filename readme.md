@@ -1,0 +1,1 @@
+Este es un proyecto realizada para entregar como producto final de la etapa lectiva del sena, es un pequeño proyecto utilizando el patron modelo vista controlador y el patron Active record, consiste en hacer una pagina web para una empresa llamada apicola genesis que se encarga de vender productos resultantes de la apicultura
