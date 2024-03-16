@@ -48,10 +48,14 @@ class AdminController{
             $producto = new Producto( array_map("trim", $_POST['producto']) );
             $producto->cedulaAdministrador = $_SESSION['cedula'];
             // debuguear($_FILES);
-            
             //$imagen = $_FILES['producto'];
-            
-            $nombreImagen = $_POST['producto']['codigo']  . ".webp";
+
+            $hashImagen = md5( uniqid( rand(), true) ); 
+            $nombreImagen = lcfirst(str_replace(' ', '', ucwords($producto->nombre)));        
+            // debuguear($nombreImagen);
+                                    
+            $nombreImagen = "{$nombreImagen}_{$hashImagen}.webp";
+            // debuguear($nombreImagen);
             // debuguear($nombreImagen);     
             if($_FILES['file-1']['tmp_name']){        
                 $producto->setImagen($nombreImagen);
@@ -92,32 +96,44 @@ class AdminController{
         $alertas=[];
         $unidadesMedidas = UnidadesMedida::all();
         $codigo = $_GET['codigo'];
-        $producto = Producto::where('codigo', $codigo);
+        $productoActual = Producto::where('codigo', $codigo); //Actual
+        $producto = Producto::where('codigo', $codigo);  //el que va contener las modificaciones
         if($_SERVER["REQUEST_METHOD"] == "POST"){
             $args = array_map("trim", $_POST['producto']);        
             // debuguear($codigoNuevo);
             $producto->sincronizar($args);
-
+      
             // debuguear($_FILES["file-1"]["tmp_name"]);
-
-            $nombreImagen = $producto->codigo . ".webp";
-            if($_FILES['file-1']['tmp_name']){                        
-                $producto->setImagen($nombreImagen);
-            }
-           
-
+            
             $alertas = $producto->validar();
             // debuguear($producto);
             //revisar que el arreglo de errores este vacio
             if(empty($alertas)){
-                // Realiza el resize con intervention  Y Setear la imagen
-                if($_FILES['file-1']['tmp_name']){
-                                    
-                    //Guarda la imagen en el servidor                          
+                
+                //Verificar si subio foto, porque el usuario puede que quiera dejar la foto que tenia
+                //tanto con la condicion1
+
+
+                if($_FILES['file-1']['tmp_name']){                
+                    
+                    //eliminar la imagen vieja
+                    unlink(CARPETA_IMAGENES . $productoActual->imagen);
+
+                    //creando el nuevo nombre para la nueva foto
+                    $hashImagen = md5( uniqid( rand(), true) ); 
+                    $nombreImagen = lcfirst(str_replace(' ', '', ucwords($producto->nombre)));                    
+                    $nombreImagen = "{$nombreImagen}_{$hashImagen}.webp";        
+            
+                    //seteo el nuevo nombre de la nueva imagen
+                    $producto->setImagen($nombreImagen);
+
+                    //Guarda la imagen en el servidor
                     $manager = new ImageManager(new Driver());
                     $image = $manager->read($_FILES['file-1']['tmp_name']);
                     $image->toWebp(70)->save(CARPETA_IMAGENES .  $nombreImagen);
-                }                
+                }
+
+                 
                 $resultado = $producto->actualizarLlave('codigo', $producto->codigo);
 
                 if($resultado) {
