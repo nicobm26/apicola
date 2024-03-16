@@ -5,7 +5,6 @@ use Model\Administrador;
 use Model\Producto;
 use MVC\Router;
 
-use Intervention\Image\ImageManagerStatic as Image;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 
