@@ -70,8 +70,7 @@
                 name="file-1"
                 id="file-1"
                 class="inputfile inputfile-1"
-                data-multiple-caption="{count} archivos seleccionados"
-                multiple
+                accept="image/jpeg, image/png"
             />
             <label for="file-1">
                 <svg
@@ -106,6 +105,6 @@ $script = "
     <script src='//cdn.jsdelivr.net/npm/sweetalert2@10'></script>
     <script src='/build/js/alertas.js'></script>
     <script src='https://kit.fontawesome.com/d74a8aa5fa.js' crossorigin='anonymous'></script>
-    <script src='/build/js/inputFile.js'></script>
+    <script src='/build/js/mostrarFoto.js'></script>
 ";
 ?>
