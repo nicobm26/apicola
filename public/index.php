@@ -27,6 +27,7 @@ $router->post("/comprar", [ComprarController::class, 'comprar']);
 
 $router->get("/carrito", [ComprarController::class, 'carrito']);
 $router->post("/carrito", [ComprarController::class, 'carrito']);
+$router->post("/eliminarProducto", [ComprarController::class, 'eliminarProducto']);
 
 
 //Panel administracion
